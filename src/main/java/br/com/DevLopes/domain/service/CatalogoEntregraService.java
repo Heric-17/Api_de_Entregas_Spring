@@ -50,6 +50,16 @@ public class CatalogoEntregraService {
 
         return entregaRepository.save(entrega);
     }
+    @Transactional
+    public Entrega cancelar(Long entregaId) {
+        Entrega entrega = buscarEntregaPorId(entregaId);
+
+        entrega.cancelar();
+
+        return entregaRepository.save(entrega);
+    }
+
+
 
 
 }

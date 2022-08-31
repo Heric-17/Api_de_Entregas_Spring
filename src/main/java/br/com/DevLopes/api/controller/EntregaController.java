@@ -47,4 +47,10 @@ public class EntregaController {
         catalogoEntregraService.finalizar(id);
     }
 
+    @PutMapping(path = "/{id}/cancelar")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void cancelar(@PathVariable Long id) {
+        catalogoEntregraService.cancelar(id);
+    }
+
 }

@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="PT-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Api de Entregas Spring</title>
+
+    <link rel="stylesheet" href="./styles/index.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=PT+Sans&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+
+    <div id="container">
+        <div id="apresenta">
+            <h1>REST API para solicitar entregas</h1>
+            <div id="links">
+                <a class="link" href="https://github.com/Heric-17/Api_de_Entregas_Spring" target="_blank">Projeto GitHub</a>
+                <h3 class="link">Héric Dos Santos Lopes</h3>
+                <a class="link" href="https://youtu.be/V_6bPARZWas" target="_blank">Demonstração de funcionamento</a>
+            </div>
+        </div>
+
+        <div>
+            <h1></h1>
+        </div>
+
+        <h1 class="titulos" id="rotas">Rotas</h1>
+        <p class="titulos">Observação: Apenas as requisições "get" podem ser feitas via navegador,
+            para inserir ou alterar dados, é preciso utilizar uma aplicação externa como: Postman ou Insomnia.
+        </p>
+
+        <br>
+        <h2>Clientes</h2>
+        <div class="desc">
+            <h3 class="verbo get">GET</h3>
+            <h4>/clientes</h4>
+            <p>Lista clientes cadastrados</p>
+        </div>
+
+        <div class="desc">
+            <h3 class="verbo post">POST</h3>
+            <h4>/clientes</h4>
+            <p>Cadastra um novo cliente</p>
+        </div>
+
+        <div class="desc">
+            <h3 class="verbo get">GET</h3>
+            <h4>/clientes/{id}</h4>
+            <p>Lista o cliente especificado pelo parâmetro da request</p>
+        </div>
+
+        <div class="desc">
+            <h3 class="verbo put">PUT</h3>
+            <h4>/clientes/{id}</h4>
+            <p>Altera o cliente especificado pelo parâmetro da request</p>
+        </div>
+
+        <div class="desc">
+            <h3 class="verbo delete">DELETE</h3>
+            <h4>/clientes/{id}</h4>
+            <p>Exclui o cliente especificado pelo parâmetro da request</p>
+        </div>
+
+        <div id="inp_out">
+            <h3 class="inp_out">Input:</h3> <img class="inp_out" src="./images/post_clientes.png" alt="">
+            <h3 class="inp_out">Output:</h3> <img class="inp_out" src="./images/get_clientes.png" alt="">
+        </div>
+
+
+        <br>
+        <h2>Entregas</h2>
+
+        <div class="desc">
+            <h3 class="verbo get">GET</h3>
+            <h4>/entregas</h4>
+            <p>Lista entregas cadastradas</p>
+        </div>
+
+        <div class="desc">
+            <h3 class="verbo post">POST</h3>
+            <h4>/entregas</h4>
+            <p>Cadastra uma nova entrega</p>
+        </div>
+
+        <div class="desc">
+            <h3 class="verbo get">GET</h3>
+            <h4>/entregas/{id}</h4>
+            <p>Lista a entrega especificada pelo parâmetro da request</p>
+        </div>
+
+        <div class="desc">
+            <h3 class="verbo put">PUT</h3>
+            <h4>/entregas/{id}/finalizar</h4>
+            <p>Define a entrega especificada pelo parâmetro da request como finalizada</p>
+        </div>
+        <div class="desc">
+            <h3 class="verbo put">PUT</h3>
+            <h4>/entregas/{id}/cancelar</h4>
+            <p>Define a entrega especificada pelo parâmetro da request como cancelada</p>
+        </div>
+
+        <div id="inp_out">
+            <h3 class="inp_out">Input:</h3> <img class="inp_out" src="./images/post_entregas.png" alt="">
+            <h3 class="inp_out">Output:</h3> <img class="inp_out" src="./images/get_entregas.png" alt="">
+        </div>
+
+
+        <br>
+        <h2>Ocorrencias</h2>
+
+        <div class="desc">
+            <h3 class="verbo get">GET</h3>
+            <h4>/entregas/{entregasId}/ocorrencias</h4>
+            <p>Lista as ocorrencias que a entrega especificada pelo parâmetro da request possui</p>
+        </div>
+
+        <div class="desc">
+            <h3 class="verbo post">POST</h3>
+            <h4>/entregas/{entregasId}/ocorrencias</h4>
+            <p>Cadastra uma nova ocorrencia para a entrega especificada pelo parâmetro da request</p>
+        </div>
+
+        <div id="inp_out">
+            <h3 class="inp_out">Input:</h3> <img class="inp_out" src="./images/post_ocorrencias.png" alt="">
+            <h3 class="inp_out">Output:</h3> <img class="inp_out" src="./images/get_ocorrencias.png" alt="">
+        </div>
+
+        <br>
+        <h1 class="titulos" id="explicacoes">Resumo</h1>
+
+        <br>
+        <p>Esta é uma API Rest criada para demonstrar conhecimento sobre o Framework Spring, padrões de projeto,
+            boas práticas de desenvolvimento e domínio sobre a linguagem Java.
+        </p>
+        <br>
+        <p>Ela consiste em uma simulação da solicitação de entregas para determinado destinatário
+            realizado a partir do cliente. A entidade entrega possui: data da solicitação e finalização geradas
+            dinamicamente com o padrão ISO8601 com OFFSET, status atual podendo ser Pendente, Finalizada ou Cancelada,
+            destinatário que terá o endereço da entrega, uma lista de Ocorrências com uma descrição e o horário que foi
+            realizada, e por fim um cliente com nome, e-mail e telefone.
+        </p>
+        <br>
+        <p>
+            A aplicação foi separada em dois pacotes: “Api” e “Model”, sendo esse um modelo para separar a implementação
+            da API, das regras de negócio. Utilizando o padrão DTO foram separadas as entidades de sua representação,
+            tornando
+            a manutenção e usabilidade da Api mais simples, com classes para entrada e para apresentação dos objetos.
+        </p>
+        <br>
+        <p>
+            Por fim, para ter maior controle da aplicação foi utilizado o Flyway deixando transparente as decisões e
+            alterações no banco de dados.
+        </p>
+
+        <br>
+        <h2>Tecnologias utilizadas</h2>
+        <br>
+        <ul id="lista_tec">
+            <li><b>Java</b>: Linguagem Core da Api;</li>
+            <li><b>Rest</b>: Normas seguidas para construção da api;</li>
+            <li><b>Maven</b>: Gerenciador de dependências e construção do projeto;</li>
+            <li><b>Spring Boot</b>: Configuração do ambiente de desenvolvimento;</li>
+            <li><b>Spring Data</b>: Persistência e validação dos dados utilizando <b>Hibernate;</b></li>
+            <li><b>Lombok</b>: Gerardor de códigos padrão do Java;</li>
+            <li><b>MySQL</b>: Banco de Dados para armazenamento;</li>
+            <li><b>Flyway</b>: Gerenciamento das tabelas do banco de dados;</li>
+            <li><b>ModelMapper</b>: Biblioteca para facilitar a implementação da Representation Model;</li>
+            <li><b>MVC(Model View Controller)</b>: Padrão utilizado para organização do projeto;</li>
+            <li><b>Repository</b>: Padrão utilizado para centralizar as classes de acesso a dados;</li>
+        </ul>
+
+    </div>
+</body>
+
+</html>

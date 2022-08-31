@@ -57,7 +57,7 @@ public class Entrega {
     }
 
     public void finalizar() {
-        if (naoPodeSerFinalizada()) {
+        if (naoPodeSerAlterada()) {
             throw new NegocioException("Entrega não pode ser finalizada");
         }
 
@@ -65,11 +65,20 @@ public class Entrega {
         this.setDataFinalizacao(OffsetDateTime.now());
     }
 
-    public boolean podeSerFinalizado() {
+    public void cancelar() {
+        if (naoPodeSerAlterada()) {
+            throw new NegocioException("Entrega não pode ser cancelada");
+        }
+
+        this.setStatus(StatusEntrega.CANCELADA);
+        this.setDataFinalizacao(OffsetDateTime.now());
+    }
+
+    public boolean podeSerAlterada() {
         return this.getStatus().equals(StatusEntrega.PENDENTE);
     }
 
-    public boolean naoPodeSerFinalizada() {
-        return !this.podeSerFinalizado();
+    public boolean naoPodeSerAlterada() {
+        return !this.podeSerAlterada();
     }
 }

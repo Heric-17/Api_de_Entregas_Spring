@@ -2,9 +2,6 @@ package br.com.DevLopes.api.exceptionHandler;
 
 import br.com.DevLopes.domain.exception.EntidadeNaoEncontradaException;
 import br.com.DevLopes.domain.exception.NegocioException;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.MessageSource;
-import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,8 +19,6 @@ import java.util.List;
 @ControllerAdvice
 public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
 
-    @Autowired
-    private MessageSource messageSource;
 
     @Override
     protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {
@@ -33,8 +28,7 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
         ex.getBindingResult().getAllErrors().forEach(err -> {
 
             String nome = ((FieldError) err).getField();
-//          String mensagem = err.getDefaultMessage();
-            String mensagem = messageSource.getMessage(err, LocaleContextHolder.getLocale());
+            String mensagem = err.getDefaultMessage();
 
             campos.add(new Problema.Campo(nome, mensagem));
         });
